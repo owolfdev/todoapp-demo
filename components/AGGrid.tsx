@@ -82,7 +82,7 @@ const FullWidthGrid: React.FC<AGGridProps> = ({ path }) => {
       .channel("realtime todos update completed")
       .on(
         "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "todos_for_ch60" },
+        { event: "UPDATE", schema: "public", table: "todos_for_todo_demo" },
         (payload: any) => {
           //console.log("Change received!", payload);
           fetchData();
@@ -257,7 +257,7 @@ const FullWidthGrid: React.FC<AGGridProps> = ({ path }) => {
     //console.log("completed", completed);
 
     const { data, error } = await supabase
-      .from("todos_for_ch60")
+      .from("todos_for_todo_demo")
       .update({ completed: !completed })
       .eq("id", id);
     if (error) {

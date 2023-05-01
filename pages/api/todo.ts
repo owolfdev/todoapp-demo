@@ -14,7 +14,7 @@ export default async function handler(
     }
 
     const { data, error } = await supabase
-      .from("todos_for_ch60")
+      .from("todos_for_todo_demo")
       .select("*")
       .eq("id", id)
       .single();

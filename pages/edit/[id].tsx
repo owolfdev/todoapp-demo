@@ -90,7 +90,7 @@ const EditTodoPage: React.FC = () => {
     }
 
     const { data, error: deleteError } = await supabase
-      .from("todos_for_ch60")
+      .from("todos_for_todo_demo")
       .delete()
       .eq("id", id);
 

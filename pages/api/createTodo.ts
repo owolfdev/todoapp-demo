@@ -26,7 +26,7 @@ export default async function handler(
 
     try {
       const { data, error } = await supabase
-        .from("todos_for_ch60")
+        .from("todos_for_todo_demo")
         .insert([
           {
             title,
