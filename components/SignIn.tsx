@@ -16,12 +16,12 @@ import {
 
 // type FormSchemaType = z.infer<typeof FormSchema>;
 
-const allowedEmails = [
-  "oliverwolfson@gmail.com",
-  "owolfdev@gmail.com",
-  "air.puthita@gmail.com",
-  "silomsoi8.air@gmail.com",
-];
+// const allowedEmails = [
+//   "oliverwolfson@gmail.com",
+//   "owolfdev@gmail.com",
+//   "air.puthita@gmail.com",
+//   "silomsoi8.air@gmail.com",
+// ];
 
 const SignIn = () => {
   const router = useRouter();
@@ -30,16 +30,16 @@ const SignIn = () => {
   const supabase = useSupabaseClient();
 
   useEffect(() => {
-    if (session?.user && session.user.email) {
-      if (allowedEmails.includes(session.user.email)) {
-        //console.log("Authorized email:", session.user.email);
-        //router.push("/signin"); // Redirect to /signin after successful login
-        router.push("/");
-      } else {
-        console.error("Unauthorized email:", session.user.email);
-        signOut();
-      }
-    }
+    // if (session?.user && session.user.email) {
+    //   if (allowedEmails.includes(session.user.email)) {
+    //     //console.log("Authorized email:", session.user.email);
+    //     //router.push("/signin"); // Redirect to /signin after successful login
+    //     router.push("/");
+    //   } else {
+    //     console.error("Unauthorized email:", session.user.email);
+    //     signOut();
+    //   }
+    // }
   }, [session]);
 
   async function signInWithGoogle() {
@@ -64,8 +64,8 @@ const SignIn = () => {
           {!session ? `Sign In` : `Sign Out, or Sign In as Another User`}
         </h2>
         <p className="mb-4">
-          This is a private todo list. Please sign in with your Google account
-          to continue.
+          This is a demo todo list. Please sign in with your Google account to
+          continue.
         </p>
         <div className="mb-4">
           {session && (

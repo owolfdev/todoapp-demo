@@ -17,12 +17,12 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-const allowedEmails = [
-  "oliverwolfson@gmail.com",
-  "owolfdev@gmail.com",
-  "air.puthita@gmail.com",
-  "silomsoi8.air@gmail.com",
-];
+// const allowedEmails = [
+//   "oliverwolfson@gmail.com",
+//   "owolfdev@gmail.com",
+//   "air.puthita@gmail.com",
+//   "silomsoi8.air@gmail.com",
+// ];
 
 const Layout: React.FC<LayoutProps> = ({ title, children }) => {
   const router = useRouter();
@@ -36,29 +36,22 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
     supabase.auth.onAuthStateChange((event, session) => {
       setIsAuthInitialized(true);
     });
-
-    // Clean up the listener when the component is unmounted
-    // return () => {
-    //   supabase.auth.onAuthStateChange((event, session) => {
-    //     setIsAuthInitialized(false);
-    //   });
-    // };
   }, []);
 
   useEffect(() => {
     if (!isAuthInitialized) return;
 
-    if (!session) {
-      router.push("/signin");
-    }
+    // if (!session) {
+    //   router.push("/signin");
+    // }
 
-    if (session?.user && session.user.email) {
-      if (allowedEmails.includes(session.user.email)) {
-      } else {
-        console.error("Unauthorized email:", session.user.email);
-        signOut();
-      }
-    }
+    // if (session?.user && session.user.email) {
+    //   if (allowedEmails.includes(session.user.email)) {
+    //   } else {
+    //     console.error("Unauthorized email:", session.user.email);
+    //     signOut();
+    //   }
+    // }
   }, [session, isAuthInitialized]);
 
   async function signOut() {

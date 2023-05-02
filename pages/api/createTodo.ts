@@ -52,7 +52,7 @@ export default async function handler(
         // Send a Slack notification when a todo is successfully created
         const slackChannel = "#todo"; // Replace with the desired Slack channel ID or name
         const slackMessage = `Todo: ${title}\nAssigned to: ${assigned_to}\nDue date: ${due_date}\nhttps://todozapp.vercel.app/todo/${todo.id}`;
-        await sendSlackMessage(slackChannel, slackMessage);
+        // await sendSlackMessage(slackChannel, slackMessage);
       }
     } catch (error) {
       console.error("Error inserting todo into Supabase:", error);

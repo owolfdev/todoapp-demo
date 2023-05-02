@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSession } from "@supabase/auth-helpers-react";
+import { log } from "console";
 
 export interface Todo {
   completed: boolean;
@@ -16,6 +17,13 @@ export interface Todo {
   author: string;
   user_id: string;
 }
+
+// const allowedEmails = [
+//   "oliverwolfson@gmail.com",
+//   "owolfdev@gmail.com",
+//   "air.puthita@gmail.com",
+//   "silomsoi8.air@gmail.com",
+// ];
 
 const AddTodo: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -76,6 +84,25 @@ const AddTodo: React.FC = () => {
       return;
     }
     try {
+      // Check if the author already has a todo
+      const { data: existingTodos } = await axios.get("/api/getTodosByAuthor", {
+        params: {
+          author: session?.user?.email,
+        },
+      });
+
+      console.log("existingTodos", existingTodos);
+
+      // If the author has a todo, show an alert
+      // uncomment this to allow only one todo per user
+      if (existingTodos && existingTodos.length > 0) {
+        alert(
+          "You can create only one todo. Please delete the previous todo before making another."
+        );
+        return;
+      }
+
+      // Create a new todo
       const { data } = await axios.post("/api/createTodo", {
         title,
         description,
@@ -85,7 +112,6 @@ const AddTodo: React.FC = () => {
         author: session?.user?.email,
         user_id: session?.user?.id,
       });
-      //console.log("Todo created", data);
       setTitle("");
       setDescription("");
       setDueDate("");
