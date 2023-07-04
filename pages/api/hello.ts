@@ -24,8 +24,8 @@ export default async function handler(
     //   database_id: project as string,
     // });
 
-    console.log("Here's the email:", email);
-    console.log("Here's the project:", project);
+    // console.log("Here's the email:", email);
+    // console.log("Here's the project:", project);
 
     const data: Data = {
       email,
