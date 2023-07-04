@@ -20,9 +20,9 @@ export default async function handler(
   if (req.method === "POST") {
     const { email, project } = req.body;
 
-    // const notionData = await notion.databases.query({
-    //   database_id: project as string,
-    // });
+    const notionData = await notion.databases.query({
+      database_id: project as string,
+    });
 
     console.log("Here's the email:", email);
     console.log("Here's the project:", project);
